@@ -64,11 +64,11 @@ namespace CShard_Console
             return html;
         }
 
-        static int MAX_ANSWERS = 50;
+        static int MAX_ANSWERS = 500;
 
         static void Main(string[] args)
         {
-            StreamWriter writer = new StreamWriter("P:/c#/CShard_Console/data.txt", true);
+            StreamWriter writer = new StreamWriter("P:/c#/CShard_Console/data.txt", false);
             string themeUrl = "https://dailythemedcrosswordanswers.com/";
             string themeHtml = GetWebPage(themeUrl);
             HtmlDocument themeDocument = new HtmlDocument();
@@ -118,7 +118,7 @@ namespace CShard_Console
                             }
                         }
                         //Console.WriteLine("question: " + questionStr + " answer: " + answer);
-                        if (questionStr.Length >= 40 && answer.Length >= 3 && answer.Length <= 8)
+                        if (!questionStr.Contains("wds") && questionStr.Length >= 30 && answer.Length >= 3 && answer.Length <= 8)
                         {
                             questionCount++;
                             writer.WriteLine(questionStr);
